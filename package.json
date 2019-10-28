@@ -4,7 +4,10 @@
   "description": "A Webpack starter template to quickly start your new web projects.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode=production",
+    "dev": "webpack --mode=development",
+    "devw": "webpack --mode=development --watch",
+    "devwo": "webpack-dev-server --mode=development --open"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,11 @@
   },
   "homepage": "https://github.com/ajzamora/webpack-setup#readme",
   "devDependencies": {
-    "webpack": "^4.41.2"
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
   }
 }

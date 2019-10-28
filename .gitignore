@@ -1,3 +1,6 @@
+# finder file
+.DS_Store
+
 # Logs
 logs
 *.log
