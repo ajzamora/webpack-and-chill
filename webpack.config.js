@@ -6,7 +6,7 @@ const path = require('path');
 // $config: common config for development and production
 let config = {
   context: __dirname,
-    entry: './src/index.js',
+    entry: './src/js/index.js',
     module: {
         rules: [
             {
