@@ -1,0 +1,11 @@
+extends layouts/layout
+block title
+  meta( charset="UTF-8")
+  title add title here
+  link( rel="preload" href=require("../fonts/Modak/Modak-Regular.ttf") as="font" type="font/ttf" crossorigin )
+block content
+  | add content here  
+  img(src=require('../images/svg/telegram-logo.svg') id="telegram-logo")    
+  p modak font here
+
+  
