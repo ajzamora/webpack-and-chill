@@ -2,11 +2,15 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
 
 
 // $config: common config for development and production
 let config = {
+  devtool: "none", // disables messy eval that webpack uses in js files (optional)
   context: __dirname,
     entry: {
       index: './src/js/index.js',
@@ -118,7 +122,12 @@ module.exports = (env, argv) => {
           removeComments: false,
         }
       }),
+      new CleanWebpackPlugin(),
     ];
+
+    config.optimization = {
+      splitChunks: {chunks: 'async'},
+    };
   }
 
   else if (argv.mode === 'production') {
@@ -153,7 +162,17 @@ module.exports = (env, argv) => {
           removeComments: true,
         }
       }),
+      new CleanWebpackPlugin(),
     ];
+
+
+    config.optimization = {
+      splitChunks: {chunks: 'async'},
+      minimizer: [
+        new OptimizeCssAssetsPlugin(),
+        new TerserPlugin(),
+      ],
+    };
   }
 
   return config;
