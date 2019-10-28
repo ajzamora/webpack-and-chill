@@ -1,15 +1,20 @@
 // webpack.config.js
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 
 // $config: common config for development and production
 let config = {
   context: __dirname,
-    entry: './src/js/index.js',
+    entry: {
+      index: './src/js/index.js',
+      about: './src/js/about.js',
+    },
     module: {
         rules: [
-            // js loader
+            // ecmascript/js transpiler/loader
             {
               test: /\.m?js$/,
               exclude: /(node_modules|bower_components)/,
@@ -21,7 +26,7 @@ let config = {
                 },
               },
             },
-            // css loader
+            // sass, scss, css loader
             {
               test: /\.s[ac]ss$/i,
               use: [
@@ -41,6 +46,12 @@ let config = {
                 "sass-loader" //1. Turns sass into css
               ],
             },
+            // html/pug loader
+            {
+              test: /\.pug$/,
+              loader: 'pug-loader',
+              options: { pretty: true, },
+            },
         ],
     },
 };
@@ -58,6 +69,28 @@ module.exports = (env, argv) => {
 
     config.plugins = [
       new MiniCssExtractPlugin({ filename: "css/[name].css" }),
+      new HtmlWebpackPlugin({
+        filename: `html/index.html`,
+        template: `./src/html/index.pug`,
+        inject: true,
+        chunks: [`index`],
+        minify: {
+          removeAttributeQuotes: false,
+          collapseWhitespace: false,
+          removeComments: false,
+        }
+      }),
+      new HtmlWebpackPlugin({
+        filename: `html/about.html`,
+        template: `./src/html/about.pug`,
+        inject: true,
+        chunks: [`about`],
+        minify: {
+          removeAttributeQuotes: false,
+          collapseWhitespace: false,
+          removeComments: false,
+        }
+      }),
     ];
   }
 
@@ -71,6 +104,28 @@ module.exports = (env, argv) => {
 
     config.plugins = [
       new MiniCssExtractPlugin({ filename: "css/[name].[contentHash:11].css" }),
+      new HtmlWebpackPlugin({
+        filename: `html/index.html`,
+        template: `./src/html/index.pug`,
+        inject: true,
+        chunks: [`index`],
+        minify: {
+          removeAttributeQuotes: true,
+          collapseWhitespace: true,
+          removeComments: true,
+        }
+      }),
+      new HtmlWebpackPlugin({
+        filename: `html/about.html`,
+        template: `./src/html/about.pug`,
+        inject: true,
+        chunks: [`about`],
+        minify: {
+          removeAttributeQuotes: true,
+          collapseWhitespace: true,
+          removeComments: true,
+        }
+      }),
     ];
   }
 
