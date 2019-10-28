@@ -14,6 +14,33 @@ let config = {
     },
     module: {
         rules: [
+            // file loader (fonts)
+            {
+              test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: `[name].[ext]`,
+                    outputPath: 'fonts',
+                    publicPath: '../fonts',
+                  },
+                },
+              ],
+            },
+            // file loader (images)
+            {
+              test: /\.(png|jpe?g|gif|svg)$/i,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: `[name].[ext]` ,
+                    outputPath: 'images',
+                  },
+                },
+              ],
+            },
             // ecmascript/js transpiler/loader
             {
               test: /\.m?js$/,
