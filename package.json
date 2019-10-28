@@ -1,0 +1,22 @@
+{
+  "name": "webpack-setup",
+  "version": "1.0.0",
+  "description": "A Webpack starter template to quickly start your new web projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajzamora/webpack-setup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajzamora/webpack-setup/issues"
+  },
+  "homepage": "https://github.com/ajzamora/webpack-setup#readme",
+  "devDependencies": {
+    "webpack": "^4.41.2"
+  }
+}
