@@ -26,7 +26,7 @@ npm install
 ```
 ##### *this will download the tools webpack needs and put it in ./node_modules folder*
 ##### Development mode (run any of these):
-```
+``` script
 npm run dev                 // build dev locally
 npm run devw                // build dev locally, and watch for changes
 npm run devwo               // build dev locally, watch for changes, and open the project in browser
@@ -34,15 +34,42 @@ npm run devwo               // build dev locally, watch for changes, and open th
 ##### *this will build your app in DEVELOPMENT mode and create it under ./dev folder*
 
 ##### Production mode:
-```
-npm run build
-```
+
 ##### *this will build your app in PRODUCTION mode and create it under ./dist folder*
-###### with features such as: 
-- *cache busting (hashing system)*
-- *refactoring codes instantly (uglify or minify)*
-- *chunking and bundling* --
-- *other plugins used for optimization: mini-css-extract-plugin, optimize-css-assets-webpack-plugin, clean-webpack-plugin*
+###### with features such as:
+- [x] *cache busting (hashing system)*
+- [x] *refactoring codes instantly (uglify or minify)*
+- [x] *chunking and bundling* --
+- [x] *other plugins used for optimization: mini-css-extract-plugin, optimize-css-assets-webpack-plugin, clean-webpack-plugin*
+- [x] *easier settings modification* (shown below)
+
+```
+/************************************************
+-- WEBPACK CONFIG JS: variables / package imports
+************************************************/
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+
+/************************************************
+-- 1. ADD YOUR PAGES in commonPages; 2. (optional) : edit arrPages/path in entryJS and entryPug if needed
+************************************************/
+const commonPages = ['index', 'about'];
+const entryJS = {...};
+const entryPug = {...}
+
+/************************************************
+-- configured rules variables
+************************************************/
+const rules = {...};
+/************************************************
+-- DEVELOPMENT & PRODUCTION common config
+************************************************/
+let config = {...};
+```
 
 ### PugJS
 Pug is a high-performance template engine heavily influenced by [Haml](http://haml.info/)
