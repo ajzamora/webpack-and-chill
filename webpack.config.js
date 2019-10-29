@@ -1,6 +1,6 @@
-/***************************************/
-// WEBPACK CONFIG JS: variables / package imports
-/***************************************/
+/************************************************
+-- WEBPACK CONFIG JS: variables / package imports
+************************************************/
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,15 +8,14 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 
-/***************************************/
-// 1. ADD YOUR PAGES in commonPages; 2. (optional) : edit arrPages/path in entryJS and entryPug if needed
-/***************************************/
+/************************************************
+-- 1. ADD YOUR PAGES in commonPages; 2. (optional) : edit arrPages/path in entryJS and entryPug if needed
+************************************************/
 const commonPages = ['index', 'about'];
 const entryJS = {
-  // just update arrPages and path if needed
   arrPages: commonPages, // Add more jsEntries: const arrPages = [...commonPages, addJSfiles]; or use ES6 .filter() to exclude
   path: './src/js/',
-  /*********************************************/
+
   config: function() {
     let configEntry = this.arrPages.map((page) =>
        ({[page]: `${this.path}${page}.js`})
@@ -25,10 +24,8 @@ const entryJS = {
   }
 };
 const entryPug = {
-  // just update arrPages and path if needed
   arrPages: commonPages, // Add more pugEntries: const arrPages = [...commonPages, addPugfiles]; or use ES6 .filter() to exclude
   path: `./src/html`,
-  /*********************************************/
   config: function(mode) {
     const isProd = mode == "production";
     return this.arrPages.map((page) =>
@@ -47,9 +44,9 @@ const entryPug = {
   }
 }
 
-/***************************************/
-// configured rules variables
-/***************************************/
+/************************************************
+-- configured rules variables
+************************************************/
 const rules = {
   pugLoader(mode) {
     return {
@@ -122,9 +119,9 @@ const rules = {
     }
   },
 };
-/***************************************/
-// DEVELOPMENT & PRODUCTION common config
-/***************************************/
+/************************************************
+-- DEVELOPMENT & PRODUCTION common config
+************************************************/
 let config = {
   devtool: "none", // disables eval that webpack uses in js files (optional)
   context: __dirname,
@@ -138,9 +135,9 @@ let config = {
 };
 
 module.exports = (env, argv) => {
-  /***************************************/
-  // MODE-based (production/development): dynamic config
-  /***************************************/
+  /************************************************
+  -- MODE-based (production/development): dynamic config
+  ************************************************/
   config.mode = argv.mode;
 
   config.module.rules.push(
@@ -164,17 +161,17 @@ module.exports = (env, argv) => {
     publicPath: '../',
   };
 
-  /***************************************/
-  // DEVELOPMENT-specific config
-  /***************************************/
+  /************************************************
+  -- DEVELOPMENT-specific config
+  ************************************************/
   if (argv.mode === 'development') {
     config.optimization = {
       splitChunks: {chunks: 'async'},
     };
   }
-  /***************************************/
-  // PRODUCTION-specific config
-  /***************************************/
+  /************************************************
+  -- PRODUCTION-specific config
+  ************************************************/
   else if (argv.mode === 'production') {
     config.optimization = {
       splitChunks: {chunks: 'async'},
