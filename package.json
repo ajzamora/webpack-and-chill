@@ -1,6 +1,6 @@
 {
-  "name": "webpack-setup",
-  "version": "1.0.0-rc2",
+  "name": "webpack-and-chill",
+  "version": "1.0.0",
   "description": "A Webpack starter template to quickly start your new web projects.",
   "main": "index.js",
   "scripts": {
