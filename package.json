@@ -1,6 +1,6 @@
 {
-  "name": "webpack-setup",
-  "version": "1.0.0-rc2",
+  "name": "webpack-and-chill",
+  "version": "1.0.0",
   "description": "A Webpack starter template to quickly start your new web projects.",
   "main": "index.js",
   "scripts": {
@@ -38,5 +38,8 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "css-reset-and-normalize": "^2.1.0"
   }
 }
